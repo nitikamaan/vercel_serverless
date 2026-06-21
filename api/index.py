@@ -9,10 +9,13 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_methods=["POST", "GET", "OPTIONS"],
-    allow_headers=["Content-Type", "Authorization"],
-    expose_headers=["Access-Control-Allow-Origin"],
+    allow_methods=["*"],
+    allow_headers=["*"]
 )
+
+@app.options("/{path:path}")
+async def options_handler():
+    return {}
 
 BASE_DIR = os.path.dirname(__file__)
 DATA_PATH = os.path.join(BASE_DIR, "q-vercel-latency.json")
