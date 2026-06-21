@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Response
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pandas as pd
@@ -54,4 +55,6 @@ def latency_metrics(req: RequestBody):
             )
         }
 
-    return result
+    response = JSONResponse(content=result)
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    return response
