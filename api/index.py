@@ -6,7 +6,7 @@ import os
 app = FastAPI()
 
 BASE_DIR = os.path.dirname(__file__)
-DATA_PATH = os.path.join(BASE_DIR, "../q-vercel-latency.json")
+DATA_PATH = os.path.join(os.path.dirname(__file__), "q-vercel-latency.json")
 
 with open(DATA_PATH, "r") as f:
     data = json.load(f)
